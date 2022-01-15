@@ -388,8 +388,9 @@ namespace OriginLibrary
 
                     newGame.Name = StringExtensions.NormalizeGameName(localData.localizableAttributes.displayName);
                     var installDir = GetInstallDirectory(localData);
-                    if (installDir.IsNullOrEmpty())
+                    if (installDir.IsNullOrEmpty() || !Directory.Exists(installDir))
                     {
+                        logger.Info($"Installation directory of Origin game with Id {package.ConvertedId} not detected, skipping.");
                         continue;
                     }
 
