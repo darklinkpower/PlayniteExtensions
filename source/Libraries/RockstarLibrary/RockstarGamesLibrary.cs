@@ -50,6 +50,12 @@ namespace RockstarGamesLibrary
                         continue;
                     }
 
+                    if (!Directory.Exists(app.InstallLocation))
+                    {
+                        logger.Info($"Installation directory of Rockstar game {rsGame.Name} not detected, skipping.");
+                        continue;
+                    }
+
                     var newGame = new GameMetadata
                     {
                         IsInstalled = true,
